@@ -153,11 +153,11 @@
             <div class="container">
                 <div class="row">
 		  <div class="col-lg-8 col-md-10 mx-auto">
-			  <section id="input" style="visibility:visible">
+			 <section id="input" style="visibility:visible">
                         <h2 class="section-heading">
                             Resume Authoring
                         </h2>
-			  <form action="resume();">
+			  <form action>
                         <p>
                             Name
                             <br>
@@ -354,13 +354,14 @@ function del_click4() {
 			<input id="italic" type="checkbox" name="italic" value="italic">Italic<br>
   			<input id="bold" type="checkbox" name="bold" value="bold">Bold<br>
 			    <p>
-                        <input type="submit" id="submit" value="Submit">
+                        <input type="button" id="submit" value="Submit" onclick="resume();">
                         <input type="Reset" id="reset" value="Reset">
 			  </p>
 			  </form>
 			  </section>
+			  
+			  
 			  <section id="output" class="col-lg-8 col-md-10 mx-auto" style="visibility:hidden">
-			  </section>
 			  <div style="display:inline-block">
 			<div style="height: auto; width: 150px; float: left; margin: 5px 10px">
 				<img id="resume_photo" src="" alt="사진">
@@ -373,6 +374,7 @@ function del_click4() {
 				<span>&nbsp; Address : </span><span id="resume_address"></span><br>
 			</div>
 		</div>
+			  </section>
 			</div>
 			 
                 </div>
