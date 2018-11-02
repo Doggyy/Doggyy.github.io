@@ -1,194 +1,270 @@
-
-
-
+<script>
+  function add_click() {
+	var num = $('#education li').length;
+	num++;
+	var item = "<li>";
+	item += "<input type=\"text\" id=\"school";
+	item += num;
+	item += "\" size=\"15\" placeholder=\"School\"/>";
+	item += "<input type=\"text\" id=\"major";
+	item += num;
+	item += "\" size=\"15\" placeholder=\"Major\"/>";
+	item += "<input type=\"date\" id=\"addm";
+	item += num;
+	item += "\"/>";
+	item += "<input type=\"date\" id=\"grad";
+	item += num;
+	item += "\"/>";
+	item += "</li>";
+	$('#education').append(item);
+}
+function del_click() {
+	if ($('#education li').length > 1) {
+		$('#education li:last').remove();
+	} else {
+		alert('No entry in a education section!');
+	}
+}
+function add_click2() {
+	var num = $('#experience li').length;
+	num++;
+	var item = "<li>";
+	item += "<input type=\"text\" id=\"organ";
+	item += num;
+	item += "\" size=\"15\" placeholder=\"Organization\"/>";
+	item += "<input type=\"text\" id=\"duty";
+	item += num;
+	item += "\" size=\"15\" placeholder=\"Duties\"/>";
+	item += "<input type=\"date\" id=\"start";
+	item += num;
+	item += "\"/>";
+	item += "<input type=\"date\" id=\"end";
+	item += num;
+	item += "\"/>";
+	item += "</li>";
+	$('#experience').append(item);
+}
+function del_click2() {
+	if ($('#experience li').length > 1) {
+		$('#experience li:last').remove();
+	} else {
+		alert('No entry in a experience section!');
+	}
+}
+function add_click3() {
+	var num = $('#skill tbody tr').length;
+	num++;
+	var item = "<tr>";
+	item += "<td><input type=\"text\" id=\"field";
+	item += num;
+	item += "\" size=\"30\"/></td>";
+	item += "<td><input type=\"text\" id=\"detail";
+	item += num;
+	item += "\" size=\"60\"/></td>";
+	item += "</tr>";
+	$('#skill').append(item);
+}
+function del_click3() {
+	if ($('#skill tbody tr').length > 1) {
+		$('#skill tr:last').remove();
+	} else {
+		alert($('#skill').length + 'No entry in a experience section!');
+	}
+}
+function add_click4() {
+	var num = $('#others li').length;
+	num++;
+	var item = "<li>";
+	item += "<input type=\"text\" id=\"other";
+	item += num;
+	item += "\" size=\"80\"/>";
+	item += "</li>";
+	$('#others').append(item);
+}
+function del_click4() {
+	if ($('#others li').length > 1) {
+		$('#others li:last').remove();
+	} else {
+		alert('No entry in a experience section!');
+	}
+}
+</script>
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Yoon MinHo's - HCI Reports</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template -->
-    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Poor+Story:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type='text/css'>
-    <!-- Custom styles for this template -->
-    <link href="css/clean-blog.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Yoon Minho's HCI Reports</a>
-      </div>
-    </nav>
-
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-heading">
-              <h1>HW3-2: Resume Authoring
-              <span class="meta">Posted by
-                <a href="#">Yoon Minho</a>
-                on November 2, 2018</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Post Content -->
-    <article>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <form action>
-              <h2 class="section-heading"> Resume Authoring </h2>
-              <p>
-                Name <br>
-                <input id = "lname" type = "text" size = "20" placeholder = "Last name" onclick = "this.select();">
-                <input id = "fname" type = "text" size = "20" placeholder = "First name" onclick = "this.select();">
-              </p>       
-              <p>
-                Image <br>
-                <input id = "image" type = "file">
-              </p>
-              <p>
-                Phone Number <br>
-                <input id = "tel" type="tel" placeholder="00*-000*-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
-                
-              </p>
-              <p>
-                Email <br>
-                
-                <input id = "email" type="email" placeholder="abc@abcd.com">
-                <br>
-              </p>
-              <p>
-                Career Goal <br>
-                <textarea id="career" cols="40" rows="3"></textarea> 
-              </p>
-              <p>
-                Education
-              </p>
-                <ol id = "education">
-                      <li>
-                        <input type = "text" id = "school1" size = "15" placeholder="School">
-                        <input type = "text" id = "major1" size = "15" placeholder="Major">
-                        <input type = "date" id = "addm1">
-                        <input type = "date" id = "grad1">
-                      </li>
-                </ol>
-                <input type="button" id="edu_add" onclick="add_click();" value="add some to list">
-                <input type="button" id="edu_del" onclick="del_click();" value="delete last of list">
-            
-              <p>
-                Experience 
-              </p>
-                <ol id = "experience">
-                      <li>
-                        <input type = "text" id = "organ1" size = "15" placeholder="Organization">
-                        <input type = "text" id = "duty1" size = "15" placeholder="Duties">
-                        <input type = "date" id = "start1">
-                        <input type = "date" id = "end1">
-                      </li>
-                </ol>
-                <input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
-                <input type="button" id="exp_del" onclick="del_click2();" value="delete last of list">
-             <p>
-               Skills 
-              </p>
-               <table id="skill">
-                 <thead>
-                   <tr>
-                     <td>Field</td>
-                     <td>Detail</td>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <td>
-                       <input type="text" id="field1" size="30">
-                     </td>
-                     <td>
-                       <input type="text" id="detail1" size="60">
-                     </td>
-                   </tr>
-                 </tbody>
-                </table>
-                <input type="button" id="ski_add" onclick="add_click3();" value="add some to table">
-                <input type="button" id="ski_del" onclick="del_click3();" value="delete last of table">
-              <p>
-                Others 
-              </p>
-                <ol id = "others">
-                      <li>
-                        <input type = "text" id = "other1" size = "80">
-                      </li>
-                </ol>
-                <input type="button" id="oth_add" onclick="add_click4();" value="add some to list">
-                <input type="button" id="oth_del" onclick="del_click4();" value="delete last of list">
-            </form>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-
-    <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
-
-  </body>
-
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Yoon MinHo's - HCI Reports</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Poor+Story:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type='text/css'>
+<!-- Custom styles for this template -->
+<link href="css/clean-blog.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<div class="container">
+	<a class="navbar-brand" href="index.html">Yoon Minho's HCI Reports</a>
+</div>
+</nav>
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('')">
+<div class="overlay">
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<div class="post-heading">
+				<h1>HW3-2: Resume Authoring <span class="meta">Posted by <a href="#">Yoon Minho</a>
+				on November 2, 2018</span>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Post Content -->
+<article>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<form action>
+				<h2 class="section-heading"> Resume Authoring </h2>
+				<p>
+					 Name <br>
+					<input id="lname" type="text" size="20" placeholder="Last name" onclick="this.select();">
+					<input id="fname" type="text" size="20" placeholder="First name" onclick="this.select();">
+				</p>
+				<p>
+					 Image <br>
+					<input id="image" type="file">
+				</p>
+				<p>
+					 Phone Number <br>
+					<input id="tel" type="tel" placeholder="00*-000*-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
+				</p>
+				<p>
+					 Email <br>
+					<input id="email" type="email" placeholder="abc@abcd.com">
+					<br>
+				</p>
+				<p>
+					 Career Goal <br>
+					<textarea id="career" cols="40" rows="3"></textarea>
+				</p>
+				<p>
+					 Education
+				</p>
+				<ol id="education">
+					<li>
+					<input type="text" id="school1" size="15" placeholder="School">
+					<input type="text" id="major1" size="15" placeholder="Major">
+					<input type="date" id="addm1">
+					<input type="date" id="grad1">
+					</li>
+				</ol>
+				<input type="button" id="edu_add" onclick="add_click();" value="add some to list">
+				<input type="button" id="edu_del" onclick="del_click();" value="delete last of list">
+				<p>
+					 Experience
+				</p>
+				<ol id="experience">
+					<li>
+					<input type="text" id="organ1" size="15" placeholder="Organization">
+					<input type="text" id="duty1" size="15" placeholder="Duties">
+					<input type="date" id="start1">
+					<input type="date" id="end1">
+					</li>
+				</ol>
+				<input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
+				<input type="button" id="exp_del" onclick="del_click2();" value="delete last of list">
+				<p>
+					 Skills
+				</p>
+				<table id="skill">
+				<thead>
+				<tr>
+					<td>
+						Field
+					</td>
+					<td>
+						Detail
+					</td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						<input type="text" id="field1" size="30">
+					</td>
+					<td>
+						<input type="text" id="detail1" size="60">
+					</td>
+				</tr>
+				</tbody>
+				</table>
+				<input type="button" id="ski_add" onclick="add_click3();" value="add some to table">
+				<input type="button" id="ski_del" onclick="del_click3();" value="delete last of table">
+				<p>
+					 Others
+				</p>
+				<ol id="others">
+					<li>
+					<input type="text" id="other1" size="80">
+					</li>
+				</ol>
+				<input type="button" id="oth_add" onclick="add_click4();" value="add some to list">
+				<input type="button" id="oth_del" onclick="del_click4();" value="delete last of list">
+			</form>
+		</div>
+	</div>
+</div>
+</article>
+<hr>
+<!-- Footer -->
+<footer>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<ul class="list-inline text-center">
+				<li class="list-inline-item">
+				<a href="#">
+				<span class="fa-stack fa-lg">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+				</span>
+				</a>
+				</li>
+				<li class="list-inline-item">
+				<a href="#">
+				<span class="fa-stack fa-lg">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+				</span>
+				</a>
+				</li>
+				<li class="list-inline-item">
+				<a href="#">
+				<span class="fa-stack fa-lg">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+				</span>
+				</a>
+				</li>
+			</ul>
+			<p class="copyright text-muted">
+				Copyright &copy; Your Website 2018
+			</p>
+		</div>
+	</div>
+</div>
+</footer>
+<!-- Custom scripts for this template -->
+<script src="js/clean-blog.min.js"></script>
+</body>
 </html>
