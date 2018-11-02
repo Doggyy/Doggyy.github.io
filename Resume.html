@@ -84,10 +84,10 @@
                         </p>
                         <ol id="education">
                             <li>
-                                <input type="text" id="school1" size="15" placeholder="School">
-                                <input type="text" id="major1" size="15" placeholder="Major">
-                                <input type="date" id="addm1" size="15">
-                                <input type="date" id="grad1" size="15">
+                                <input type="text" id="school1" size="10" placeholder="School">
+                                <input type="text" id="major1" size="10" placeholder="Major">
+                                <input type="date" id="addm1"> ~ 
+                                <input type="date" id="grad1">
                             </li>
                         </ol>
                         <input type="button" id="edu_add" onclick="add_click();" value="add some to list">
@@ -99,16 +99,16 @@
 	var item = "<li>";
 	item += "<input type=\"text\" id=\"school";
 	item += num;
-	item += "\" size=\"15\" placeholder=\"School\"/>";
+	item += "\" size=\"10\" placeholder=\"School\"/>";
 	item += "<input type=\"text\" id=\"major";
 	item += num;
-	item += "\" size=\"15\" placeholder=\"Major\"/>";
+	item += "\" size=\"10\" placeholder=\"Major\"/>";
 	item += "<input type=\"date\" id=\"addm";
 	item += num;
-	item += "\" size=\"15\"/>";
+	item += "\"/> ~ ";
 	item += "<input type=\"date\" id=\"grad";
 	item += num;
-	item += "\" size=\"15\"/>";
+	item += "\"/>";
 	item += "</li>";
 	$('#education').append(item);
 }
@@ -125,10 +125,10 @@ function del_click() {
                         </p>
                         <ol id="experience">
                             <li>
-                                <input type="text" id="organ1" size="15" placeholder="Organization">
-                                <input type="text" id="duty1" size="15" placeholder="Duties">
-                                <input type="date" id="start1" size="15">
-                                <input type="date" id="end1" size="15">
+                                <input type="text" id="organ1" size="10" placeholder="Organization">
+                                <input type="text" id="duty1" size="10" placeholder="Duties">
+                                <input type="date" id="start1"> ~
+                                <input type="date" id="end1">
                             </li>
                         </ol>
                         <input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
@@ -146,10 +146,10 @@ function add_click2() {
 	item += "\" size=\"15\" placeholder=\"Duties\"/>";
 	item += "<input type=\"date\" id=\"start";
 	item += num;
-	item += "\" size=\"15\"/>";
+	item += "\"/> ~ ";
 	item += "<input type=\"date\" id=\"end";
 	item += num;
-	item += "\" size=\"15\"/>";
+	item += "\"/>";
 	item += "</li>";
 	$('#experience').append(item);
 }
