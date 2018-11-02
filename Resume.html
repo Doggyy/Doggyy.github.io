@@ -55,6 +55,17 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <form action>
+              <h2 class="section-heading"> Resume Authoring </h2>
+              <p>
+                "Name : "
+                <input id = "lname" type = "text" size = "11" value = "Last name" onclick = "this.select();">
+                <input id = "fname" type = "text" size = "11" value = "First name" onclick = "this.select();">
+              </p>       
+              <script type="text/javascript">
+              function select(){
+                dom.value = "";
+              }
+              </script>
             </form>
           </div>
         </div>
