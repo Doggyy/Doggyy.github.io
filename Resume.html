@@ -86,8 +86,8 @@
                             <li>
                                 <input type="text" id="school1" size="15" placeholder="School">
                                 <input type="text" id="major1" size="15" placeholder="Major">
-                                <input type="date" id="addm1">
-                                <input type="date" id="grad1">
+                                <input type="date" id="addm1" size="15">
+                                <input type="date" id="grad1" size="15">
                             </li>
                         </ol>
                         <input type="button" id="edu_add" onclick="add_click();" value="add some to list">
@@ -105,10 +105,10 @@
 	item += "\" size=\"15\" placeholder=\"Major\"/>";
 	item += "<input type=\"date\" id=\"addm";
 	item += num;
-	item += "\"/>";
+	item += "\" size=\"15\"/>";
 	item += "<input type=\"date\" id=\"grad";
 	item += num;
-	item += "\"/>";
+	item += "\" size=\"15\"/>";
 	item += "</li>";
 	$('#education').append(item);
 }
@@ -127,8 +127,8 @@ function del_click() {
                             <li>
                                 <input type="text" id="organ1" size="15" placeholder="Organization">
                                 <input type="text" id="duty1" size="15" placeholder="Duties">
-                                <input type="date" id="start1">
-                                <input type="date" id="end1">
+                                <input type="date" id="start1" size="15">
+                                <input type="date" id="end1" size="15">
                             </li>
                         </ol>
                         <input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
@@ -146,10 +146,10 @@ function add_click2() {
 	item += "\" size=\"15\" placeholder=\"Duties\"/>";
 	item += "<input type=\"date\" id=\"start";
 	item += num;
-	item += "\"/>";
+	item += "\" size=\"15\"/>";
 	item += "<input type=\"date\" id=\"end";
 	item += num;
-	item += "\"/>";
+	item += "\" size=\"15\"/>";
 	item += "</li>";
 	$('#experience').append(item);
 }
