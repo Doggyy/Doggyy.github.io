@@ -68,7 +68,9 @@
               <p>
                 Phone Number <br>
                 <input id = "tel" type="tel" placeholder="00*-000*-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
-                <br>
+                
+              </p>
+              <p>
                 Email <br>
                 
                 <input id = "email" type="email" placeholder="abc@abcd.com">
@@ -76,8 +78,186 @@
               </p>
               <p>
                 Career Goal <br>
-                <textarea id="goal" cols="50" rows="5"></textarea> 
+                <textarea id="career" cols="40" rows="3"></textarea> 
               </p>
+              <p>
+                Education <br>
+                <ol id = "education">
+                      <li>
+                        <input type = "text" id = "school1" size = "30" placeholder="School">
+                        <input type = "text" id = "major1" size = "30" placeholder="Major">
+                        <input type = "date" id = "addm1">
+                        <input type = "date" id = "grad1">
+                      </li>
+                </ol>
+                <input type="button" id="edu_add" onclick="add_click();" value="add some to list">
+                <input type="button" id="edu_del" onclick="del_click();" value="delete last of list">
+                <script>
+                  function add_click() 
+                  {
+                    var num = $('#education li').length;
+                    num++;
+                    var item = "<li>";
+                    item += "<input type=\"text\" id=\"school";
+                    item += num;
+                    item += "\" size=\"30\" placeholder=\"School\"/>";
+                    item += "<input type=\"text\" id=\"major";
+                    item += num;
+                    item += "\" size=\"30\" placeholder=\"Major\"/>";
+                    item += "<input type=\"date\" id=\"addm";
+                    item += num;
+                    item += "\"/>";
+                    item += "<input type=\"date\" id=\"grad";
+                    item += num;
+                    item += "\"/>";
+                    item += "</li>";
+                    $('#education li').append(item);
+                  }
+                  function del_click() 
+                  {
+                    if ($('#education li').length > 1) 
+                    {
+                      $('#education li:last').remove();
+                    } 
+                    else 
+                    {
+                      alert('No entry in a education section!');
+                    }
+                  }
+                </script>              
+              </p>
+            
+              <p>
+                Experience <br>
+                <ol id = "experience">
+                      <li>
+                        <input type = "text" id = "organ1" size = "30" placeholder="Organization">
+                        <input type = "text" id = "duty1" size = "30" placeholder="Duties">
+                        <input type = "date" id = "start1">
+                        <input type = "date" id = "end1">
+                      </li>
+                </ol>
+                <input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
+                <input type="button" id="exp_del" onclick="del_click2();" value="delete last of list">
+                <script>
+                  function add_click2() 
+                  {
+                    var num = $('#experience li').length;
+                    num++;
+                    var item = "<li>";
+                    item += "<input type=\"text\" id=\"organ";
+                    item += num;
+                    item += "\" size=\"30\" placeholder=\"Organization\"/>";
+                    item += "<input type=\"text\" id=\"duty";
+                    item += num;
+                    item += "\" size=\"30\" placeholder=\"Duties\"/>";
+                    item += "<input type=\"date\" id=\"start";
+                    item += num;
+                    item += "\"/>";
+                    item += "<input type=\"date\" id=\"end";
+                    item += num;
+                    item += "\"/>";
+                    item += "</li>";
+                    $('#experience').append(item);
+                  }
+                  function del_click2() 
+                  {
+                    if ($('#experience li').length > 1) 
+                    {
+                      $('#experience li:last').remove();
+                    } 
+                    else 
+                    {
+                      alert('No entry in a experience section!');
+                    }
+                  }
+                </script>                
+              </p>
+             <p>
+               Skills <br>
+               <table id="skill">
+                 <thead>
+                   <tr>
+                     <td>Field</td>
+                     <td>Detail</td>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <td>
+                       <input type="text" id="field1" size="30">
+                     </td>
+                     <td>
+                       <input type="text" id="detail1" size="60">
+                     </td>
+                   </tr>
+                 </tbody>
+                </table>
+                <input type="button" id="ski_add" onclick="add_click3();" value="add some to table">
+                <input type="button" id="ski_del" onclick="del_click3();" value="delete last of table">
+                <script>
+                  function add_click3() 
+                  {
+                    var num = $('#skill tbody tr').length;
+                    num++;
+                    var item = "<tr>";
+                    item += "<td><input type=\"text\" id=\"field";
+                    item += num;
+                    item += "\" size=\"30\"/></td>";
+                    item += "<td><input type=\"text\" id=\"detail";
+                    item += num;
+                    item += "\" size=\"60\"/></td>";
+                    item += "</tr>";
+                    $('#skill').append(item);
+                  }
+                  function del_click3() 
+                  {
+                    if ($('#skill tbody tr').length > 1) 
+                    {
+                      $('#skill tr:last').remove();
+                    } 
+                    else 
+                    {
+                      alert($('#skill').length + 'No entry in a experience section!');
+                    }
+                  }
+                </script>                  
+              </p>
+              <p>
+                Others <br>
+                <ol id = "others">
+                      <li>
+                        <input type = "text" id = "other1" size = "100">
+                      </li>
+                </ol>
+                <input type="button" id="oth_add" onclick="add_click4();" value="add some to list">
+                <input type="button" id="oth_del" onclick="del_click4();" value="delete last of list">
+                <script>
+                  function add_click4() 
+                  {
+                    var num = $('#others li').length;
+                    num++;
+                    var item = "<li>";
+                    item += "<input type=\"text\" id=\"other";
+                    item += num;
+                    item += "\" size=\"100\"/>";
+                    item += "</li>";
+                    $('#others').append(item);
+                  }
+                  function del_click4() 
+                  {
+                    if ($('#others li').length > 1) 
+                    {
+                      $('#others li:last').remove();
+                    } 
+                    else 
+                    {
+                      alert('No entry in a experience section!');
+                    }
+                  }
+                </script>                
+              </p>
+            </form>
           </div>
         </div>
       </div>
