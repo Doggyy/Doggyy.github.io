@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,6 +17,108 @@
         <!-- Custom styles for this template -->
         <link href="css/clean-blog.css" rel="stylesheet">
     </head>
+	<script>
+		function resume()
+		{
+			
+				function resume() {
+					var lastName = document.getElementById(“lname").value;
+					var firstName = document.getElementById("fname").value;
+					
+					
+					upload.onchange = function (e) {
+					  e.preventDefault();
+
+					  var file = upload.files[0],
+					      reader = new FileReader();
+					  reader.onload = function (event) {
+					    var img = new Image();
+					    img.src = event.target.result;
+					    if (img.width > 600) {
+					      img.width = 600;
+					    }
+					    holder.innerHTML = '';
+					    holder.appendChild(img);
+					  };
+					  reader.readAsDataURL(file);
+
+					  return false;
+					};
+
+
+					var phone = document.getElementById(“tel”).value;
+					var email = document.getElementById(“email").value;
+					
+					var goal = document.getElementById(“career”).value;
+
+					var edu_length = $(‘#education li’).length;
+					var exp_length = $('#experience li’).length;
+					var ski_length = $('#skill tbody tr').length;
+
+					var fc = document.getElementById(“color”).value;
+					var fs = document.getElementById(“font_size”).value;
+					fs += "em";
+					
+
+					var educ="";
+					for(i = 1; i < edu_length+1; i++){
+						var id_school = "school" + i;
+						re_education +=  document.getElementById(id_school).value;
+						var id_major = "major" + i;
+						re_education += document.getElementById(id_major).value;
+						var id_addm = "addm" + i;
+						re_education +=  "  ("+document.getElementById(id_addm).value;
+						var id_grad = "grad" + i;
+						re_education +=  "~"+document.getElementById(id_grad).value;
+						re_education += "<br>";
+					}
+					
+
+					var expe="";
+					for(i = 1; i < exp_length+1; i++){
+						var id_organ = "organ” + i;
+						re_experience +=  document.getElementById(id_organ).value+" ";
+						var id_duty = "duty" + i;
+						re_experience += document.getElementById(id_duty).value;
+						var id_start = "start" + i;
+						re_experience +=  "  ("+document.getElementById(id_start).value;
+						var id_end = “end” + i;
+						re_experience +=  "~"+document.getElementById(id_end).value+")";
+						re_experience += "<br>";
+					}
+
+
+					var skill="";
+					for(i = 1; i < ski_length+1; i++){
+						var id_field = "field" + i;
+						re_skill +=  document.getElementById(id_field).value;
+						var id_detail = "detail" + i;
+						re_skill +=  "  ("+document.getElementById(id_detail).value+")";
+						re_skill += "<br>";
+					}
+
+					document.getElementById("resume_name").innerHTML = re_lastName+" "+re_middleName+" "+re_firstName;
+					document.getElementById("resume_phone").innerHTML = re_phone; 
+					document.getElementById("resume_email").innerHTML = re_email; 
+					document.getElementById("resume_address").innerHTML = re_address;
+
+
+					document.getElementById("resume_obj").innerHTML = re_goal;
+
+					document.getElementById("resume_edu").innerHTML = re_education;
+					document.getElementById("resume_exp").innerHTML = re_experience;
+					document.getElementById("resume_ski").innerHTML = re_skill;
+
+					document.getElementById("result").style.backgroundColor = re_bg;
+					document.getElementById("result").style.color = re_fc;
+					document.getElementById("forFontSize").style.fontSize = re_fs;
+					
+						input.style.visibility = "hidden";
+						output.style.visibility = "visible";
+				}
+			
+		}
+	</script>
     <body>
 	    <!-- autocomplete from jQuery Ui -->
     <script src='{% static "js/jquery-1.11.3.min.js" %}'></script>
@@ -49,10 +153,11 @@
             <div class="container">
                 <div class="row">
 		  <div class="col-lg-8 col-md-10 mx-auto">
+			  <section id="input" style="visibility:visible">
                         <h2 class="section-heading">
                             Resume Authoring
                         </h2>
-			  <form action="/action_page.php">
+			  <form action="resume();">
                         <p>
                             Name
                             <br>
@@ -248,12 +353,28 @@ function del_click4() {
                         Font Size : &nbsp; &nbsp; 1em <input id="font_size" type="range" min="1" max = "20" > 20em <br>
 			<input id="italic" type="checkbox" name="italic" value="italic">Italic<br>
   			<input id="bold" type="checkbox" name="bold" value="bold">Bold<br>
-			Select Background sheet : <input id="background" type="file" ><br>
 			    <p>
-                        <input type="submit" id="submi" value="Submit">
+                        <input type="submit" id="submit" value="Submit">
+                        <input type="Reset" id="reset" value="Reset">
 			  </p>
 			  </form>
+			  </section>
+			  <section id="output" class="col-lg-8 col-md-10 mx-auto" style="visibility:hidden">
+			  </section>
+			  <div style="display:inline-block">
+			<div style="height: auto; width: 150px; float: left; margin: 5px 10px">
+				<img id="resume_photo" src="" alt="사진">
 			</div>
+			<div style="float: left;">
+				<strong><u><p id="resume_name" style="margin: 1px">  </p></u></strong>
+				<span><strong>&nbsp; Contact &amp; Address: </strong></span><br>
+				<span>&nbsp; Call No : </span><span id="resume_phone"></span><br>
+				<span>&nbsp; E-mail : </span><span id="resume_email"></span><br>
+				<span>&nbsp; Address : </span><span id="resume_address"></span><br>
+			</div>
+		</div>
+			</div>
+			 
                 </div>
             </div>
         </article>
