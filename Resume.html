@@ -85,94 +85,28 @@
               </p>
                 <ol id = "education">
                       <li>
-                        <input type = "text" id = "school1" size = "20" placeholder="School">
-                        <input type = "text" id = "major1" size = "20" placeholder="Major">
+                        <input type = "text" id = "school1" size = "15" placeholder="School">
+                        <input type = "text" id = "major1" size = "15" placeholder="Major">
                         <input type = "date" id = "addm1">
                         <input type = "date" id = "grad1">
                       </li>
                 </ol>
                 <input type="button" id="edu_add" onclick="add_click();" value="add some to list">
                 <input type="button" id="edu_del" onclick="del_click();" value="delete last of list">
-                <script>
-                  function add_click() 
-                  {
-                    var num = $('#education li').length;
-                    num++;
-                    var item = "<li>";
-                    item += "<input type=\"text\" id=\"school";
-                    item += num;
-                    item += "\" size=\"20\" placeholder=\"School\"/>";
-                    item += "<input type=\"text\" id=\"major";
-                    item += num;
-                    item += "\" size=\"20\" placeholder=\"Major\"/>";
-                    item += "<input type=\"date\" id=\"addm";
-                    item += num;
-                    item += "\"/>";
-                    item += "<input type=\"date\" id=\"grad";
-                    item += num;
-                    item += "\"/>";
-                    item += "</li>";
-                    $('#education').append(item);
-                  }
-                  function del_click() 
-                  {
-                    if ($('#education li').length > 1) 
-                    {
-                      $('#education li:last').remove();
-                    } 
-                    else 
-                    {
-                      alert('No entry in a education section!');
-                    }
-                  }
-                </script>    
             
               <p>
                 Experience 
               </p>
                 <ol id = "experience">
                       <li>
-                        <input type = "text" id = "organ1" size = "20" placeholder="Organization">
-                        <input type = "text" id = "duty1" size = "20" placeholder="Duties">
+                        <input type = "text" id = "organ1" size = "15" placeholder="Organization">
+                        <input type = "text" id = "duty1" size = "15" placeholder="Duties">
                         <input type = "date" id = "start1">
                         <input type = "date" id = "end1">
                       </li>
                 </ol>
                 <input type="button" id="exp_add" onclick="add_click2();" value="add some to list">
                 <input type="button" id="exp_del" onclick="del_click2();" value="delete last of list">
-                <script>
-                  function add_click2() 
-                  {
-                    var num = $('#experience li').length;
-                    num++;
-                    var item = "<li>";
-                    item += "<input type=\"text\" id=\"organ";
-                    item += num;
-                    item += "\" size=\"20\" placeholder=\"Organization\"/>";
-                    item += "<input type=\"text\" id=\"duty";
-                    item += num;
-                    item += "\" size=\"20\" placeholder=\"Duties\"/>";
-                    item += "<input type=\"date\" id=\"start";
-                    item += num;
-                    item += "\"/>";
-                    item += "<input type=\"date\" id=\"end";
-                    item += num;
-                    item += "\"/>";
-                    item += "</li>";
-                    $('#experience').append(item);
-                  }
-                  function del_click2() 
-                  {
-                    if ($('#experience li').length > 1) 
-                    {
-                      $('#experience li:last').remove();
-                    } 
-                    else 
-                    {
-                      alert('No entry in a experience section!');
-                    }
-                  }
-                </script>      
              <p>
                Skills 
               </p>
@@ -196,33 +130,6 @@
                 </table>
                 <input type="button" id="ski_add" onclick="add_click3();" value="add some to table">
                 <input type="button" id="ski_del" onclick="del_click3();" value="delete last of table">
-                <script>
-                  function add_click3() 
-                  {
-                    var num = $('#skill tbody tr').length;
-                    num++;
-                    var item = "<tr>";
-                    item += "<td><input type=\"text\" id=\"field";
-                    item += num;
-                    item += "\" size=\"30\"/></td>";
-                    item += "<td><input type=\"text\" id=\"detail";
-                    item += num;
-                    item += "\" size=\"60\"/></td>";
-                    item += "</tr>";
-                    $('#skill').append(item);
-                  }
-                  function del_click3() 
-                  {
-                    if ($('#skill tbody tr').length > 1) 
-                    {
-                      $('#skill tr:last').remove();
-                    } 
-                    else 
-                    {
-                      alert($('#skill').length + 'No entry in a experience section!');
-                    }
-                  }
-                </script>    
               <p>
                 Others 
               </p>
@@ -233,30 +140,6 @@
                 </ol>
                 <input type="button" id="oth_add" onclick="add_click4();" value="add some to list">
                 <input type="button" id="oth_del" onclick="del_click4();" value="delete last of list">
-                <script>
-                  function add_click4() 
-                  {
-                    var num = $('#others li').length;
-                    num++;
-                    var item = "<li>";
-                    item += "<input type=\"text\" id=\"other";
-                    item += num;
-                    item += "\" size=\"80\"/>";
-                    item += "</li>";
-                    $('#others').append(item);
-                  }
-                  function del_click4() 
-                  {
-                    if ($('#others li').length > 1) 
-                    {
-                      $('#others li:last').remove();
-                    } 
-                    else 
-                    {
-                      alert('No entry in a experience section!');
-                    }
-                  }
-                </script>     
             </form>
           </div>
         </div>
