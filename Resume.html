@@ -81,11 +81,12 @@
                 <textarea id="career" cols="40" rows="3"></textarea> 
               </p>
               <p>
-                Education <br>
+                Education
+              </p>
                 <ol id = "education">
                       <li>
-                        <input type = "text" id = "school1" size = "30" placeholder="School">
-                        <input type = "text" id = "major1" size = "30" placeholder="Major">
+                        <input type = "text" id = "school1" size = "20" placeholder="School">
+                        <input type = "text" id = "major1" size = "20" placeholder="Major">
                         <input type = "date" id = "addm1">
                         <input type = "date" id = "grad1">
                       </li>
@@ -100,10 +101,10 @@
                     var item = "<li>";
                     item += "<input type=\"text\" id=\"school";
                     item += num;
-                    item += "\" size=\"30\" placeholder=\"School\"/>";
+                    item += "\" size=\"20\" placeholder=\"School\"/>";
                     item += "<input type=\"text\" id=\"major";
                     item += num;
-                    item += "\" size=\"30\" placeholder=\"Major\"/>";
+                    item += "\" size=\"20\" placeholder=\"Major\"/>";
                     item += "<input type=\"date\" id=\"addm";
                     item += num;
                     item += "\"/>";
@@ -124,15 +125,15 @@
                       alert('No entry in a education section!');
                     }
                   }
-                </script>              
-              </p>
+                </script>    
             
               <p>
-                Experience <br>
+                Experience 
+              </p>
                 <ol id = "experience">
                       <li>
-                        <input type = "text" id = "organ1" size = "30" placeholder="Organization">
-                        <input type = "text" id = "duty1" size = "30" placeholder="Duties">
+                        <input type = "text" id = "organ1" size = "20" placeholder="Organization">
+                        <input type = "text" id = "duty1" size = "20" placeholder="Duties">
                         <input type = "date" id = "start1">
                         <input type = "date" id = "end1">
                       </li>
@@ -147,10 +148,10 @@
                     var item = "<li>";
                     item += "<input type=\"text\" id=\"organ";
                     item += num;
-                    item += "\" size=\"30\" placeholder=\"Organization\"/>";
+                    item += "\" size=\"20\" placeholder=\"Organization\"/>";
                     item += "<input type=\"text\" id=\"duty";
                     item += num;
-                    item += "\" size=\"30\" placeholder=\"Duties\"/>";
+                    item += "\" size=\"20\" placeholder=\"Duties\"/>";
                     item += "<input type=\"date\" id=\"start";
                     item += num;
                     item += "\"/>";
@@ -171,10 +172,10 @@
                       alert('No entry in a experience section!');
                     }
                   }
-                </script>                
-              </p>
+                </script>      
              <p>
-               Skills <br>
+               Skills 
+              </p>
                <table id="skill">
                  <thead>
                    <tr>
@@ -221,13 +222,13 @@
                       alert($('#skill').length + 'No entry in a experience section!');
                     }
                   }
-                </script>                  
-              </p>
+                </script>    
               <p>
-                Others <br>
+                Others 
+              </p>
                 <ol id = "others">
                       <li>
-                        <input type = "text" id = "other1" size = "100">
+                        <input type = "text" id = "other1" size = "80">
                       </li>
                 </ol>
                 <input type="button" id="oth_add" onclick="add_click4();" value="add some to list">
@@ -240,7 +241,7 @@
                     var item = "<li>";
                     item += "<input type=\"text\" id=\"other";
                     item += num;
-                    item += "\" size=\"100\"/>";
+                    item += "\" size=\"80\"/>";
                     item += "</li>";
                     $('#others').append(item);
                   }
@@ -255,8 +256,7 @@
                       alert('No entry in a experience section!');
                     }
                   }
-                </script>                
-              </p>
+                </script>     
             </form>
           </div>
         </div>
