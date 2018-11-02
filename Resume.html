@@ -57,30 +57,25 @@
             <form action>
               <h2 class="section-heading"> Resume Authoring </h2>
               <p>
-                Name &nbsp;
-                <input id = "lname" type = "text" size = "20" value = "Last name" onclick = "this.select();">
-                <input id = "fname" type = "text" size = "20" value = "First name" onclick = "this.select();">
+                Name <br>
+                <input id = "lname" type = "text" size = "20" placeholder = "Last name" onclick = "this.select();">
+                <input id = "fname" type = "text" size = "20" placeholder = "First name" onclick = "this.select();">
               </p>       
-              <script type="text/javascript">
-              function select(){
-                this.value = "";
-              }
-              </script>
               <p>
-                Image &nbsp;
+                Image <br>
                 <input id = "image" type = "file">
               </p>
               <p>
-                Phone Number &nbsp;
+                Phone Number <br>
                 <input id = "tel" type="tel" placeholder="00*-000*-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
                 <br>
-                Email &nbsp;
+                Email <br>
                 
                 <input id = "email" type="email" placeholder="abc@abcd.com">
                 <br>
               </p>
               <p>
-                Career Goal
+                Career Goal <br>
                 <textarea id="goal" cols="50" rows="5"></textarea> 
               </p>
           </div>
