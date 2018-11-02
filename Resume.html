@@ -30,29 +30,10 @@
 					var lastName = document.getElementById("lname").value;
 					var firstName = document.getElementById("fname").value;
 					
-					
-					upload.onchange = function (e) {
-					  e.preventDefault();
-
-					  var file = upload.files[0],
-					      reader = new FileReader();
-					  reader.onload = function (event) {
-					    var img = new Image();
-					    img.src = event.target.result;
-					    if (img.width > 600) {
-					      img.width = 600;
-					    }
-					    holder.innerHTML = '';
-					    holder.appendChild(img);
-					  };
-					  reader.readAsDataURL(file);
-
-					  return false;
-					};
 
 
 					var phone = document.getElementById("tel").value;
-					var email = document.getElementById("email").value;
+					var mail = document.getElementById("email").value;
 					
 					var goal = document.getElementById("career").value;
 
@@ -93,31 +74,31 @@
 					}
 
 
-					var skill="";
+					var ski="";
 					for(i = 1; i < ski_length+1; i++){
 						var id_field = "field" + i;
-						skill +=  document.getElementById(id_field).value;
+						ski +=  document.getElementById(id_field).value;
 						var id_detail = "detail" + i;
-						skill +=  "  ("+document.getElementById(id_detail).value+")";
-						skill += "<br>";
+						ski +=  "  ("+document.getElementById(id_detail).value+")";
+						ski += "<br>";
 					}
 
 					document.getElementById("resume_name").innerHTML = lastName+" "+firstName;
 					document.getElementById("resume_phone").innerHTML = phone; 
-					document.getElementById("resume_email").innerHTML = email; 
+					document.getElementById("resume_email").innerHTML = mail; 
 
 
 					document.getElementById("resume_obj").innerHTML = goal;
 
 					document.getElementById("resume_edu").innerHTML = educ;
 					document.getElementById("resume_exp").innerHTML = expe;
-					document.getElementById("resume_ski").innerHTML = skill;
+					document.getElementById("resume_ski").innerHTML = ski;
 
 					document.getElementById("result").style.color = fc;
 					document.getElementById("forFontSize").style.fontSize = fs;
 					
-						input.style.visibility = "hidden";
-						output.style.visibility = "visible";
+					input.style.visibility = "hidden";
+					output.style.visibility = "visible";
 				}
 			
 		}
