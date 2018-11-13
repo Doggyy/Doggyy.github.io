@@ -51,89 +51,162 @@
   <script type="text/javascript">
     var canvas = document.getElementById("mycanvas");
     var context = canvas.getContext("2d");
-    var windows=[];
+    var windo;
+    var fonter;
+    var menus=["item1", "item2", "item3"];
     var canvasleft = canvas.offsetLeft;
     var canvastop = canvas.offsetTop;
-    create_window(30, 30, 300, 300, "My_Window");
-    canvas.addEventListener('click', function(event) {
-      var x = event.pageX-canvasleft, y = event.pageY-canvastop;
-      windows.forEach(function(window){
-        if (window.exitx < x && x < window.exitx + window.butw &&
-           window.exity < y && y < window.exity + window.buth)
-          {
-            context.clearRect(window.winx-3,window.winy-3,window.width+6,window.height+6);
-            delete windows[windows.indexOf(window)];
-          }
-        
-        
-        if (window.hidex < x && x < window.hidex + window.butw &&
-           window.hidey < y && y < window.hidey+ window.buth)
-          {
-            
-            if (!window.hidden)
-           {
-              context.clearRect(window.winx-3,window.winy-3,window.width+6,window.height-25);
-              context.beginPath();
-              context.moveTo(window.winx,window.winy+window.height-28);
-                  context.lineTo(window.winx+window.width,window.winy+window.height-28);
-              context.strokeStyle="Black";
-              context.lineWidth=3;
-              context.stroke();
-             window.hidden=true;
-          }
-            else
-              {
-            context.clearRect(window.winx-3,window.winy-3,window.width+6,window.height+6);
-                draw_window(window.winx, window.winy, window.width,window.height,window.titl);
-                window.hidden=false;
-                
-              }
-            
-          }
-      });
-    }, false);
-    function create_window(x, y, w, h, title)
-    {
-      draw_window(x,y,w,h,title);
-      
-      windows.push({
-        winx : x,
-        winy : y,
-        width : w,
-        height : h,
-        exitx : x+w-25,
-        exity : y+w-25,
-        hidex : x+w-45,
-        hidey : y+w-25,
+    var fonts=["bold 16pt Batang","italic 20pt Tahoma","normal 12pt Times New Roman",];
+    
+      windo = {
+        winx : 30,
+        winy : 30,
+        width : 300,
+        height : 300,
+        exitx : 0,
+        exity : 0,
+        hidex : 0,
+        hidey : 0,
         butw : 20,
         buth : 20,
         hidden : false,
-        titl : title
-      });
+        exit : false,
+        title : "My window"
+      };
+    
+     windo.exitx=windo.winx+windo.width-25;
+     windo.exity=windo.winy+windo.height-25;
+     windo.hidex=windo.winx+windo.width-45;
+     windo.hidey=windo.winy+windo.height-25;
+    
+    fonter = {
+        boxx : 500,
+        boxy : 30,
+        width : 300,
+        height : 50,
+        mode : 1
+    };
+    
+    menu = {
+      x : 500,
+      y : 230,
+      width : 300,
+      height : 50,
+      open : false,
+      title : "menu"
+    };
+    
+    drawall();
+    
+    canvas.addEventListener('click', function(event) {
+      var x = event.pageX-canvasleft, y = event.pageY-canvastop;
+        if (windo.exitx < x && x < windo.exitx + windo.butw &&
+           windo.exity < y && y < windo.exity + windo.buth)
+          {
+            windo.exit=true;
+          }
+        
+        
+        if (windo.hidex < x && x < windo.hidex + windo.butw &&
+           windo.hidey < y && y < windo.hidey+ windo.buth)
+          {
+            if(windo.hidden)
+              {
+              windo.hidden=false;
+              }
+            else
+              {
+                windo.hidden=true;
+              }
+          }
+      
+        if (fonter.boxx < x && x < fonter.boxx + fonter.width && fonter.boxy < y && y < fonter.boxy + fonter.height)
+          {
+            switch(fonter.mode)
+              {
+                case 1: 
+                  fonter.mode = 2;
+                  break;
+                case 2:
+                  fonter.mode = 3;
+                  break;
+                case 3:
+                  fonter.mode = 1;
+                  break;
+                default: break;
+              }
+           
+          }
+      
+        if (menu.x < x && x < menu.x + menu.width && menu.y < y && y < menu.y + menu.height)
+          {
+            if(menu.open)
+              {
+                menu.open=false;
+              }
+            else
+              {
+                menu.open=true;
+              }
+           
+          }
+      
+            context.clearRect(0,0,1000,1000);
+            drawall();
+    }, false);
+    
+    
+    function drawall()
+    { 
+      create_fontbutton(fonter.boxx,fonter.boxy,fonter.width,fonter.height, "Change Font");
+     
+      create_window(windo.winx, windo.winy, windo.width, windo.height, windo.title);
+     
+     create_menu(menu.x, menu.y, menu.width, menu.height, menu.title);
+     
     }
-    function draw_window(x,y,w,h,title)
+    function create_fontbutton(x, y, w, h, content)
     {
+      drawbox(x,y,w,h);     
       
-      context.beginPath();
-      context.rect(x,y,w,h);
-      context.strokeStyle="Black";
-      context.fillStyle="#AED4E1";
-      context.lineWidth=3;
-      context.lineJoin="bevel";
-      context.stroke();
-      context.fill();
+      context.font=fonts[fonter.mode - 1];
+      context.fillStyle="Black";
+      context.textAlign="center";
+      context.fillText(content,(x+x+w)/2,(y+y+h)/2);
       
+      drawbox(x,y+100,w,h);      
+      
+      context.font=fonts[fonter.mode - 1];
+      context.fillStyle="Black";
+      context.textAlign="center";
+      context.fillText(fonts[fonter.mode - 1],(x+x+w)/2,(y+y+h)/2+100);
+    }
+    
+    function create_window(x, y, w, h, title)
+    {
+      if (!windo.exit){
+        if(windo.hidden)
+          {
+              drawbox(x,y+h-28,w,30);
+          }
+        else
+          {
+      
+      drawbox(x,y,w,h);
+            
       context.moveTo(x,y+50);
       context.lineTo(x+w,y+50);
       context.strokeStyle="Black";
       context.lineWidth=3;
       context.stroke();
       
-      context.font="bold 16pt Batang";
+      context.font=fonts[fonter.mode - 1];
       context.fillStyle="Black";
       context.textAlign="center";
       context.fillText(title,(x+x+w)/2,y+30);
       
+          }
+        
       windowbutt(x+w-25,y+w-25,20,20);
       windowbutt(x+w-45,y+w-25,20,20);
       
@@ -142,7 +215,48 @@
       context.textAlign="center";
       context.fillText('x',x+w-15,y+w-10);
       context.fillText('-',x+w-35,y+w-10); 
+      } 
+    }
+    
+    function create_menu(x, y, w, h, menu_title)
+    {
+      drawbox(x,y,w,h);     
       
+      context.font=fonts[fonter.mode - 1];
+      context.fillStyle="Black";
+      context.textAlign="center";
+      context.fillText(menu_title,(x+x+w)/2,(y+y+h)/2);
+      
+      if (menu.open){
+      for (var i = 0; i < menus.length ; i++)
+        {
+          var yy = y + h * (i + 1);
+      drawbox(x+10,yy,w,h);      
+      
+      context.font=fonts[fonter.mode - 1];
+      context.fillStyle="Black";
+      context.textAlign="center";
+      context.fillText(menus[i],(x+x+w+10)/2,(yy+yy+h)/2);
+        }
+        var yy= y + h * (menus.length+1);
+      drawbox(x+10,yy,w,h/3 * 2);      
+      
+      context.font=fonts[fonter.mode - 1];
+      context.fillStyle="Black";
+      context.textAlign="right";
+      context.fillText("Sum = " + menus.length,x+w,(yy+yy+h)/2);
+      }
+    }
+    function drawbox(x,y,w,h)
+    {
+      context.beginPath();
+      context.rect(x,y,w,h);
+      context.strokeStyle="Black";
+      context.fillStyle="#AED4E1";
+      context.lineWidth=3;
+      context.lineJoin="bevel";
+      context.stroke();
+      context.fill();
     }
     function windowbutt(x,y,w,h)
     {
