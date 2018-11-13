@@ -58,9 +58,11 @@
     var canvas = document.getElementById("mycanvas");
     var context = canvas.getContext("2d");
     var windows=[];
+    var canvasleft = canvas.offsetLeft;
+    var canvastop = canvas.offsetTop;
     create_window(30, 30, 300, 300, "My_Window");
     canvas.addEventListener('click', function(event) {
-      var x = event.pageX, y = event.pageY;
+      var x = event.pageX-canvasleft, y = event.pageY-canvastop;
       windows.forEach(function(window){
         if (window.exitx < x && x < window.exitx + window.butw &&
            window.exity < y && y < window.exity + window.buth)
