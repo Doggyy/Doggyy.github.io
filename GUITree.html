@@ -46,326 +46,217 @@
         </div>
       </div>
     </header>
-
   <canvas id="mycanvas" width="1000" height="1000"></canvas>
- <script type="text/javascript">
+  <script type="text/javascript">
     var canvas = document.getElementById("mycanvas");
     var context = canvas.getContext("2d");
     var id_ch = [];
     var idtonode = [];
     var windo;
-    var menus = ["window", "rectangle", "line"];
-    var roots=[], last = 0;
-    var creatnode, creatroot;
-    var selectedmode=0;
+    var roots = [];
+    var selectedmode = 0;
     var canvasleft = canvas.offsetLeft;
     var canvastop = canvas.offsetTop;
     var cx, cy;
-    menu = {
-      x : 500,
-      y : 230,
-      width : 300,
-      height : 50,
-      open : true
-    };
-    
-    creatnode = {
-        boxx : 500,
-        boxy : 30,
-        width : 300,
-        height : 50
-    };
-    
-    creatroot = {
-        boxx : 500,
-        boxy : 130,
-        width : 300,
-        height : 50
-    };
-    
-    drawall();
-    
-    canvas.addEventListener('click', function(event) {
-      var x = event.pageX-canvasleft, y = event.pageY-canvastop;
-      for (var i = 0; i < menus.length ; i++)
-        {
-          var yy = menu.y + menu.height * (i + 1);
-          xx=menu.x;
-        if (xx < x && x < xx + menu.width && yy < y && y < yy + menu.height)
-          {
-           selectedmode=i;
-          }
-        }
-      
-        if (creatnode.boxx < x && x < creatnode.boxx + creatnode.width && creatnode.boxy < y && y < creatnode.boxy + creatnode.height)
-          {
-            if (last == 0)
-              {
-               alert("No roots!"); 
-              }
-            else
-              {
-            addnode(searchnode(roots[last - 1]),selectedmode);
-              }
-           
-          }
-        if (creatroot.boxx < x && x < creatroot.boxx + creatroot.width && creatroot.boxy < y && y < creatroot.boxy + creatroot.height)
-          {
-            create_root(selectedmode);
-          }
-      
-            context.clearRect(0,0,1000,1000);
-            drawall();
-      
-    }, false);
-    
-    for (var i = 1; i <= 100; i++)
-    {
+
+    for (var i = 1; i <= 100; i++) {
       id_ch[i] = false;
     }
     
-    function newid()
-    {
-      var i;
-      for (i = 1; i <= 100; i++)
+    create_root(0,100,130,200,200);
+    create_root(0,410,30,300,200);
+    create_root(0,440,250,500,240);
+    addnode(searchnode(roots[0]),1,130,160,50,50);
+    addnode(searchnode(roots[0]),2,200,200,50,100);
+    addnode(searchnode(roots[1]),0,500,50,150,150);
+    addnode(searchnode(6),1,550,100,40,80);
+    addnode(searchnode(roots[2]),0,500,300,200,100);
+    addnode(searchnode(8),2,510,310,150,80);
+    addnode(searchnode(roots[2]),0,730,320,200,130);
+
+    
+    drawall();
+
+    
+    canvas.addEventListener('click', function(event) {
+      var x = event.pageX - canvasleft, y = event.pageY - canvastop;
+      context.clearRect(0,0,1000,1000);
+      drawall();
+      for (var i = 0; i < roots.length; i++)
         {
-          if (id_ch[i] == false)
+          var root=searchnode(roots[i]);
+          if (root.x < x && x < root.x + root.sizex && root.y < y && y < root.y + root.sizey)
             {
-              id_ch[i] = true;
-              break;
+              select(x,y,root);
             }
         }
+    }, false);
+    function newid() {
+      var i;
+      for (i = 1; i <= 100; i++) {
+        if (id_ch[i] == false) {
+          id_ch[i] = true;
+          break;
+        }
+      }
       return i;
     }
-    function Node(parent,id,mode)
-    {
-      this.id=id;
-      this.child=[];
-      this.soc=0; //sum of children
-      this.mode=mode;
-      if (parent != null)
-        {
-          this.parent=parent;
-          this._root=parent._root;
-        }
-    }
-    function addnode(parent,mode)
-    {
-      var id=newid();
-      var node = new Node(parent,id,mode);
-      parent.child[parent.soc]=node;
-      parent.soc++;
-      idtonode[id]=node;
-    }
-    function deletenode(id)
-    {
-      var node = searchnode(id);
-      id_ch[id]=0;
-      for (var child in node.child)
-        {
-          deletenode(child.id);
-        }
-      delete node;
-    }
-    function searchnode(id)
-    {
-      return idtonode[id];
-    }
-    function create_root(mode)
-    {
-      roots[last++]=newid();
-      var tree = new Node(null, roots[last - 1], mode);
-      idtonode[roots[last - 1]]=tree;
-      tree._root = tree;
-    }
-    
-    function drawall()
-    { 
-      create_button(creatnode.boxx,creatnode.boxy,creatnode.width,creatnode.height);
-     
-     create_menu(menu.x, menu.y, menu.width, menu.height);
-     cx = 10;
-     drawtrees();
-    }
-    function create_button(x, y, w, h)
-    {
-      context.beginPath();
-      drawbox(x,y,w,h);     
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="center";
-      context.fillText("Add node",(x+x+w)/2,(y+y+h)/2);
-      
-      drawbox(x,y+100,w,h);      
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="center";
-      context.fillText("Create root",(x+x+w)/2,(y+y+h)/2+100);
-    }
-    
-    function create_window(x, y, w, h, title)
-    {
-      context.beginPath();
-      windo = {
-        winx : x,
-        winy : y,
-        width : w,
-        height : h,
-        exitx : 0,
-        exity : 0,
-        hidex : 0,
-        hidey : 0,
-        butw : 20,
-        buth : 20,
-        hidden : false,
-        exit : false,
-        title : title
-      };
-    
-     windo.exitx=windo.winx+windo.width-25;
-     windo.exity=windo.winy+windo.height-25;
-     windo.hidex=windo.winx+windo.width-45;
-     windo.hidey=windo.winy+windo.height-25;
-      
-      
-      if (!windo.exit){
-        if(windo.hidden)
-          {
-              drawbox(x,y+h-28,w,30);
-          }
-        else
-          {
-      
-      drawbox(x,y,w,h);
-            
-      context.moveTo(x,y+50);
-      context.lineTo(x+w,y+50);
-      context.strokeStyle="Black";
-      context.lineWidth=3;
-      context.stroke();
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="center";
-      context.fillText(title,(x+x+w)/2,y+30);
-      
-          }
-        
-      windowbutt(x+w-25,y+w-25,20,20);
-      windowbutt(x+w-45,y+w-25,20,20);
-      
-      context.font="12pt Batang";
-      context.fillStyle="white";
-      context.textAlign="center";
-      context.fillText('x',x+w-15,y+w-10);
-      context.fillText('-',x+w-35,y+w-10); 
-      } 
-    }
-    
-    function create_menu(x, y, w, h)
-    {
-      context.beginPath();
-      drawbox(x,y,w,h);     
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="center";
-      context.fillText(menus[selectedmode],(x+x+w)/2,(y+y+h)/2);
-      
-      if (menu.open){
-      for (var i = 0; i < menus.length ; i++)
-        {
-          var yy = y + h * (i + 1);
-      drawbox(x+10,yy,w,h);      
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="center";
-      context.fillText(menus[i],(x+x+w+10)/2,(yy+yy+h)/2);
-        }
-        var yy= y + h * (menus.length+1);
-      drawbox(x+10,yy,w,h/3 * 2);      
-      
-      context.font="bold 16pt Batang";
-      context.fillStyle="Black";
-      context.textAlign="right";
-      context.fillText("Sum = " + menus.length,x+w,(yy+yy+h)/2);
+
+    function Node(parent, id, mode, x, y, sizex, sizey) {
+      this.id = id;
+      this.child = [];
+      this.mode = mode;
+      this.x = x;
+      this.y = y;
+      this.sizex = sizex;
+      this.sizey = sizey;
+      if (parent != null) {
+        this.parent = parent;
+        this._root = parent._root;
       }
     }
-    function drawbox(x,y,w,h)
+
+    function select(x,y,node)
     {
-      context.beginPath();
-      context.rect(x,y,w,h);
-      context.strokeStyle="Black";
-      context.fillStyle="#AED4E1";
-      context.lineWidth=3;
-      context.lineJoin="bevel";
-      context.stroke();
-      context.fill();
-    }
-    function windowbutt(x,y,w,h)
-    {
-      context.beginPath();
-      context.rect(x,y,w,h);
-      context.strokeStyle="Black";
-      context.fillStyle="#1F8EAC";
-      context.lineWidth=2;
-      context.lineJoin="bevel";
-      context.stroke();
-      context.fill();
-    }
-    function drawline(x,y,ex,ey)
-    {
-      context.beginPath();
-      context.strokeStyle="Black";
-      context.lineWidth=2;
-      context.moveTo(x,y);
-      context.lineTo(ex,ey);
-      context.stroke();
-    }
-    function drawnodes(node)
-    {
-      var tx;
-      switch(node.mode)
+      var t = false;
+      for (var i = 0; i < node.child.length; i++)
         {
-          case 0: 
-            create_window(cx,cy,100,100,node.id);
-            break;
-          case 1: 
-            drawbox(cx,cy,100,100);
-            break;
-          case 2:
-            drawline(cx,cy,cx+100,cy+100);
-            break;
+          child = node.child[i];
+       if (child.x < x && x < child.x+child.sizex && child.y < y && y < child.y+child.sizey)
+         {
+           t = true;
+           select(x, y, child);
+           break;
+         }
         }
-      if (node.soc > 0)
+      if (!t)
         {
-          
-      cy += 150;
-          tx=cx+50;
-      for (var i = 0; i < node.soc; i++)
+      context.beginPath();
+      context.strokeStyle = "Black";
+      context.lineWidth = 1;
+      context.setLineDash( [4,2] );
+      context.lineDashOffset = 2;
+      context.strokeRect(node.x-5, node.y-5, node.sizex+10, node.sizey+10);
+      context.setLineDash( [4,0] );
+        }
+    }
+    
+    function addnode(parent, mode, x, y, sizex, sizey) {
+      var id = newid();
+      var node = new Node(parent, id, mode, x, y, sizex, sizey);
+      parent.child.push(node);
+      idtonode[id] = node;
+    }
+
+    function deletenode(id) {
+      var node = searchnode(id);
+      var temp, leng=node.parent.child.length;
+      
+      for (var i = 0; i < node.parent.child.length; i++)
         {
-          context.beginPath();       
-          context.moveTo(tx,cy-50);
-          context.lineTo(cx+50,cy);
-          context.stroke();
+          var child = node.parent.child[i];
+          if (child.id == id)
+            {
+              temp = child;
+              child = node.parent.child[leng-1];
+              node.parent.child[leng-1]=temp;
+              node.parent.child.pop();
+            }
+        }
+      id_ch[id] = 0;
+      for (var child in node.child) {
+        deletenode(child.id);
+      }
+      delete node;
+    }
+
+    function searchnode(id) {
+      return idtonode[id];
+    }
+
+    function create_root(mode,x,y,sizex,sizey) {
+      roots.push(newid());
+      var tree = new Node(null, roots[roots.length - 1], mode,x,y,sizex,sizey);
+      idtonode[roots[roots.length - 1]] = tree;
+      tree._root = tree;
+    }
+
+    function drawall() {
+      drawtrees();
+    }
+
+    function drawbox(x, y, w, h) {
+      context.beginPath();
+      context.rect(x, y, w, h);
+      context.strokeStyle = "Black";
+      context.fillStyle = "#AED4E1";
+      context.lineWidth = 3;
+      context.lineJoin = "bevel";
+      context.stroke();
+      context.fill();      
+      
+    }
+
+    function drawcircle(x, y, w, h) {
+      context.beginPath();
+      context.moveTo(x, y);
+      context.quadraticCurveTo(x+w,y,x+w,y+h);
+      context.strokeStyle = "Black";
+      context.lineWidth = 2;
+      context.lineJoin = "bevel";
+      context.stroke();
+      context.moveTo(x, y);
+      context.quadraticCurveTo(x,y+h,x+w,y+h);
+      context.strokeStyle = "Black";
+      context.lineWidth = 2;
+      context.lineJoin = "bevel";
+      context.stroke();
+    }
+
+    function drawtri(x, y, ex, ey) {
+      context.beginPath();
+      context.strokeStyle = "Black";
+      context.lineWidth = 2;
+      context.moveTo(x, y);
+      context.lineTo(x+ex, y);
+      context.stroke();
+      context.strokeStyle = "Black";
+      context.lineWidth = 2;
+      context.moveTo(x+ex, y);
+      context.lineTo(x+ex/2, y+ey);
+      context.stroke();
+      context.strokeStyle = "Black";
+      context.lineWidth = 2;
+      context.moveTo(x+ex/2, y+ey);
+      context.lineTo(x, y);
+      context.stroke();
+    }
+
+    function drawnodes(node) {
+      switch (node.mode) {
+        case 0:
+          drawbox(node.x,node.y,node.sizex,node.sizey);
+          break;
+        case 1:
+          drawcircle(node.x,node.y,node.sizex,node.sizey);
+          break;
+        case 2:
+          drawtri(node.x,node.y,node.sizex,node.sizey);
+          break;
+      }
+      for (var i = 0; i < node.child.length; i++)
+        {
           drawnodes(node.child[i]);
-          cx += 150;
-        }
         }
     }
-    function drawtrees()
-    {
-      for (var i = 0; i < last; i++)
-        {
-          cy = 10;
-          drawnodes(searchnode(roots[i]));
-        }
+
+    function drawtrees() {
+      for (var i = 0; i < roots.length; i++) {
+        cy = 10;
+        drawnodes(searchnode(roots[i]));
+      }
     }
   </script>
-
     <!-- Footer -->
     <footer>
       <div class="container">
