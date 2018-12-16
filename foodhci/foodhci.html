@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>undefined</title>
+  <meta name="generator" content="Google Web Designer 5.0.1.1129">
+  <style type="text/css" id="gwd-text-style">
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+  </style>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-color: transparent;
+      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+
+<body class="htmlNoPages">  <canvas id="mycanvas" width="1000" height="1000"></canvas>
+  <script type="text/javascript">
+    var canvas = document.getElementById("mycanvas");
+    var context = canvas.getContext("2d");
+    var id_ch = [];
+    var idtonode = [];
+    var windo, opt = false;
+    var roots = [];
+    var page = 0;
+    var selectedimg, lastimgid;
+    var canvasleft = canvas.offsetLeft;
+    var canvastop = canvas.offsetTop;
+    var page_title = ["Food Organizer", "Food", "Food", "Not Food", ""];
+    for (var i = 1; i <= 100; i++) {
+      id_ch[i] = false;
+    }
+    
+    create_root(0,0,0,100,100,null,"#FFFCF1",0); //page 0
+    
+    create_root(0,0,0,100,100,null,"#FFFCF1",1); //page 1
+    create_root(0,0,0,100,100,null,"#FFFCF1",2); //page 2
+    create_root(0,0,0,100,100,null,"#FFFCF1",3); //page 3
+    create_root(0,0,0,100,100,null,"#5E5D59",4); //page 4
+    var foodid, notfoodid;
+    foodid = addnode(searchnode(1),1,25,20,50,30,"Food","#A1DBDB",1);
+    notfoodid = addnode(searchnode(1),1,25,55,50,30,"Not Food","#C1BFDB",3); addnode(searchnode(foodid),2,27,24,22,12,"img/food1.jpg","img",1);
+    addnode(searchnode(foodid),2,51,24,22,12,"img/food2.jpg","img",1);
+    addnode(searchnode(foodid),2,27,37,22,12,"img/food3.jpg","img",1); 
+    addnode(searchnode(notfoodid),2,27,59,22,12,"img/notfood1.jpg","img",3);
+    addnode(searchnode(notfoodid),2,51,59,22,12,"img/notfood2.jpg","img",3);
+    addnode(searchnode(notfoodid),2,27,72,22,12,"img/notfood3.jpg","img",3);
+    addnode(searchnode(2),2,8,20,40,30,"img/food1.jpg","img",4);
+    addnode(searchnode(2),2,52,20,40,30,"img/food2.jpg","img",4);
+    addnode(searchnode(2),2,8,55,40,30,"img/food3.jpg","img",4);
+    
+    addnode(searchnode(3),3,8,20,0,0,"서울","#A1DBDB",2);
+    addnode(searchnode(3),2,8,25,40,30,"img/food1.jpg","img",4);
+    addnode(searchnode(3),3,8,60,0,0,"부산","#A1DBDB",2);
+    addnode(searchnode(3),2,8,65,40,30,"img/food2.jpg","img",4);
+    
+    addnode(searchnode(4),2,8,20,40,30,"img/notfood1.jpg","img",4);
+    addnode(searchnode(4),2,52,20,40,30,"img/notfood2.jpg","img",4);
+    addnode(searchnode(4),2,8,60,40,30,"img/notfood3.jpg","img",4);
+    resizeCanvas();
+    
+    
+    window.addEventListener('resize', resizeCanvas, false);
+    
+    canvas.addEventListener('click', function(event) {
+      var x = event.pageX - canvasleft, y = event.pageY - canvastop;
+      if (opt)
+        {
+          optionDo(x,y);
+          opt = false; 
+          context.clearRect(0,0,canvas.width,canvas.height);
+          resizeCanvas();
+          return;
+        }
+      if (canvas.width - 35 < x && x < canvas.width && canvas.height - 20 < y && y < canvas.height)
+        {
+          opt = true;
+          context.clearRect(0,0,canvas.width,canvas.height);
+          resizeCanvas();
+          return;
+        }
+      var tx, ty;
+      tx = x / canvas.width * 100;
+      ty = y / canvas.height * 100;
+          var root=searchnode(roots[page]);
+          
+          if (root.x < tx && tx < root.x + root.sizex && root.y < ty && ty < root.y + root.sizey)
+            {
+              select(tx,ty,root);
+          context.clearRect(0,0,canvas.width,canvas.height);
+       
+          resizeCanvas();
+            }
+    }, false);    
+
+    function optionOn()
+    {
+      var wid = canvas.width, hei = canvas.height;
+      context.beginPath();
+      switch(page)
+        {
+          case 0:
+            break;
+          case 1:{
+            drawbox(wid-80,hei-61,80,20,"장소별 보기","#C1BFDB");
+            drawbox(wid-80,hei-40,80,20,"뒤로 가기","#C1BFDB");
+            break;
+          }
+          case 2:{
+            drawbox(wid-80,hei-40,80,20,"뒤로 가기","#C1BFDB");
+            break;
+          }
+          case 3:{
+            drawbox(wid-80,hei-40,80,20,"뒤로 가기","#C1BFDB");
+            break;
+          }
+          case 4:{
+            drawbox(wid-80,hei-61,80,20,"추가 보정","#C1BFDB");
+            drawbox(wid-80,hei-40,80,20,"REPORT","#C1BFDB");
+            break;
+          }
+        }
+    }
+    function optionDo(x,y)
+    {
+      var wid = canvas.width, hei = canvas.height;
+      if (page == 1)
+        {
+              if (wid - 80 < x && x < wid)
+                {
+                  if (hei - 61 <= y && y < hei - 40)
+                    {
+                      page = 2;
+                    }
+                  if (hei - 40 <= y && y < hei - 20)
+                    {
+                      page = 0;
+                    }
+                }
+        }
+      if (page == 2)
+        {
+              if (wid - 80 < x && x < wid)
+                {
+                  if (hei - 40 <= y && y < hei - 20)
+                    {
+                      page = 1;
+                    }
+                }
+        }
+      if (page == 3)
+        {
+              if (wid - 80 < x && x < wid)
+                {
+                  if (hei - 40 <= y && y < hei - 20)
+                    {
+                      page = 0;
+                    }
+                }
+        }
+    }
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        drawpage();
+    }
+    
+    function newid() {
+      var i;
+      for (i = 1; i <= 100; i++) {
+        if (id_ch[i] == false) {
+          id_ch[i] = true;
+          break;
+        }
+      }
+      return i;
+    }
+    function Node(parent, id, mode, x, y, sizex, sizey, title,color,topage) {
+      this.id = id;
+      this.child = [];
+      this.mode = mode;
+      this.x = x;
+      this.y = y;
+      this.sizex = sizex;
+      this.sizey = sizey;
+      this.title = title;
+      this.color = color;
+      this.topage = topage;
+      if (parent != null) {
+        this.parent = parent;
+        this._root = parent._root;
+      }
+    }
+    function select(x,y,node)
+    {
+      var t = false;
+      for (var i = 0; i < node.child.length; i++)
+        {
+          child = node.child[i];
+       if (child.x < x && x < child.x+child.sizex && child.y < y && y < child.y+child.sizey)
+         {
+           t = true;
+           select(x, y, child);
+           break;
+         }
+        }
+      if (!t)
+        {
+          if (page==4 && node.topage != 4)
+            {
+              
+              deletenode(lastimgid);
+            }
+          if (page != 4 && node.topage==4)
+            {
+              lastimgid = addnode(searchnode(5),2,0,10,100,80,node.title,"img",4);
+
+              
+              var pagenode;
+              pagenode=searchnode(5);
+              pagenode.topage=page;
+            }
+              
+          page=node.topage;
+        }
+    }
+    
+    function addnode(parent, mode, x, y, sizex, sizey, title,color,topage) {
+      var id = newid();
+       var node = new Node(parent, id, mode, x, y, sizex, sizey,title,color,topage); 
+      parent.child.push(node);
+      idtonode[id] = node;
+      return id;
+    }
+    function deletenode(id) {
+      var node = searchnode(id);
+      var temp, leng=node.parent.child.length;
+      
+      for (var i = 0; i < node.parent.child.length; i++)
+        {
+          var child = node.parent.child[i];
+          if (child.id == id)
+            {
+              temp = child;
+              child = node.parent.child[leng-1];
+              node.parent.child[leng-1]=temp;
+              node.parent.child.pop();
+              break;
+            }
+        }
+      for (var i = 0; i < node.child.length; i++){
+        deletenode(node.child[i].id);
+      }
+      delete node;
+    }
+    function searchnode(id) {
+      return idtonode[id];
+    }
+    function create_root(mode,x,y,sizex,sizey,title,color,topage) {
+      roots.push(newid());
+      var tree = new Node(null, roots[roots.length - 1], mode,x,y,sizex,sizey,title,color,topage);
+      idtonode[roots[roots.length - 1]] = tree;
+      tree._root = tree;
+    }
+    function drawbox(x, y, w, h,title,color) {
+      context.beginPath();
+      context.rect(x, y, w, h);
+      context.fillStyle = color;
+      context.fill();      
+      
+      if (title != null)
+        {
+          
+      context.beginPath();
+      context.font="10pt Batang";
+      context.fillStyle="#FDFDFD";
+      context.textAlign="center";
+        context.fillText(title,x+w/2,y+h/2+5);
+        }
+    }
+    function drawwindow(x, y, w, h, title,color) {
+      
+      drawbox(x,y,w,h,null,color);
+      
+      context.beginPath();
+      context.strokeStyle = "#616161";
+      context.lineWidth = 20;
+      context.moveTo(x, y+10);
+      context.lineTo(x+w, y+10);
+      context.stroke();
+
+      if (title != null)
+        {
+      context.beginPath();
+      context.font="14pt Batang";
+      context.fillStyle="#FDFDFD";
+      context.textAlign="left";
+        context.fillText(title,x+10,y+19);
+        }
+    }
+    function drawimg(x, y, ex, ey,src) {
+      var imgObj = new Image();     
+      imgObj.src = src;     
+      imgObj.onload = function(){
+          context.beginPath();
+          context.drawImage(imgObj,x,y,ex,ey); 
+      }
+    }
+    function drawlocation(x, y, ex, ey, title) {      
+      context.beginPath();
+      context.font="14pt Batang";
+      context.fillStyle="black";
+      context.textAlign="left";
+      context.fillText(title,x,y);
+      
+      context.strokeStyle = "#616161";
+      context.lineWidth = 3;
+      context.moveTo(x, y+10);
+      context.lineTo(canvas.width-15, y+13);
+      context.stroke();
+    }
+    function drawnodes(node) {
+      switch (node.mode) {
+        case 0:
+          drawbox(canvas.width / 100 * node.x,canvas.height / 100 * node.y,canvas.width / 100 * node.sizex,canvas.height / 100 * node.sizey,node.title,node.color);
+          break;
+        case 1:
+          drawwindow(canvas.width / 100 * node.x,canvas.height / 100 * node.y,canvas.width / 100 * node.sizex,canvas.height / 100 * node.sizey,node.title,node.color);
+          break;
+        case 2:
+          drawimg(canvas.width / 100 * node.x,canvas.height / 100 * node.y,canvas.width / 100 * node.sizex,canvas.height / 100 * node.sizey,node.title);
+          break;
+        case 3:
+          drawlocation(canvas.width / 100 * node.x,canvas.height / 100 * node.y,canvas.width / 100 * node.sizex,canvas.height / 100 * node.sizey,node.title);
+          break;
+      }
+      for (var i = 0; i < node.child.length; i++)
+        {
+          drawnodes(node.child[i]);
+        }
+    }
+    function drawpage() {
+      var node = searchnode(roots[page]);
+      var x = node.x + node.sizex / 2;
+      var y = 10;
+      
+      drawnodes(node);
+      
+      context.beginPath();
+      context.font="16pt Batang";
+      context.fillStyle="#616161";
+      context.textAlign="center";
+      context.fillText(page_title[page], x * canvas.width / 100,y * canvas.height / 100);
+      
+      context.beginPath();
+      context.strokeStyle = "#758997";
+      context.lineWidth = 20;
+      context.moveTo(0,canvas.height-10);
+      context.lineTo(canvas.width, canvas.height-10);
+      context.stroke();
+      
+      context.beginPath();
+      context.font="10pt Batang";
+      context.fillStyle="white";
+      context.textAlign="center";
+      context.fillText("...", canvas.width - 25, canvas.height - 10);
+      
+      if (opt)
+        {
+          optionOn();
+        }
+      
+    }
+  </script>
+</body>
+
+</html>
